@@ -1,6 +1,7 @@
+var meSpeak = require("mespeak")
+
 class Bonzi {
 	constructor(id, userPublic) {
-
 		// ========================================================================
 		// VARIABLES/CONSTANTS
 		// ========================================================================
@@ -8,8 +9,7 @@ class Bonzi {
 			name: "BonziBUDDY",
 			color: "purple",
 			speed: 175,
-			pitch: 50,
-			voice: "en-us"
+			pitch: 50
 		};
 		this.color = this.userPublic.color;
 		this.colorPrev;
@@ -133,6 +133,9 @@ class Bonzi {
 						callback: () => {
 							this.cancel();
 							this.mute = !this.mute;
+							socket.emit("command", {
+								list: ["muted", this.userPublic.name]
+							});
 						}
 					},
 					"asshole": {
@@ -166,11 +169,14 @@ class Bonzi {
 
 		this.needsUpdate = false;
 
-		this.runSingleEvent([{
+		this.runSingleEvent(
+		[{
 			type: "anim",
 			anim: "surf_intro",
 			ticks: 30
 		}]);
+		
+		setTimeout(function(){ var audio = new Audio('jump_off.mp3'); audio.play(); }, 1000)
 	}
 
 	eventMake(list) {
@@ -258,9 +264,8 @@ class Bonzi {
 	}
 
 	stopSpeaking() {
-		this.goingToSpeak = false;
 		try {
-			this.voiceSource.stop();
+			BonziHandler.stop(this.speakID);
 		} catch(e) {}
 	}
 
@@ -390,7 +395,7 @@ class Bonzi {
 
 		this.goingToSpeak = true;
 
-		speak.play(say, {
+		speak.play(say, { 
 			"pitch": this.userPublic.pitch,
 			"speed": this.userPublic.speed
 		}, () => { // onended
@@ -400,6 +405,7 @@ class Bonzi {
 			this.voiceSource = source;
 		});
 	}
+
 
 	joke() { this.runSingleEvent(this.data.event_list_joke); }
 
@@ -411,6 +417,7 @@ class Bonzi {
 			anim: "surf_away",
 			ticks: 30
 		}]);
+		setTimeout(function(){ var audio = new Audio('bye.mp3'); audio.play(); }, 980)
 		setTimeout(callback, 2000);
 	}
 
@@ -459,6 +466,55 @@ class Bonzi {
 				type: "idle"
 			});
 		}
+		this.runSingleEvent(event);
+	}
+	
+	banana() {
+		var event = [{
+			type: "anim",
+			anim: "banana_fwd",
+			ticks: 15
+		}];
+		this.runSingleEvent(event);
+	}
+	clap() {
+		var event = [{
+			type: "anim",
+			anim: "clap_fwd",
+			ticks: 15
+		}];
+		this.runSingleEvent(event);
+	}
+	surf() {
+		var event = [{
+			type: "anim",
+			anim: "surf_across_still",
+			ticks: 15
+		}];
+		this.runSingleEvent(event);
+	}
+	swag() {
+		var event = [{
+			type: "anim",
+			anim: "cool_fwd",
+			ticks: 15
+		}];
+		this.runSingleEvent(event);
+	}
+	bang() {
+		var event = [{
+			type: "anim",
+			anim: "beat_fwd",
+			ticks: 15
+		}];
+		this.runSingleEvent(event);
+	}
+	earth() {
+		var event = [{
+			type: "anim",
+			anim: "earth_fwd",
+			ticks: 15
+		}];
 		this.runSingleEvent(event);
 	}
 
@@ -514,6 +570,24 @@ class Bonzi {
 				type: "text",
 				text: "You're a fucking asshole!",
 				say: "your a fucking asshole!"
+			}, {
+				type: "anim",
+				anim: "grin_fwd",
+				ticks: 15
+			}, {
+				type: "idle"
+			}]
+		);
+	}
+
+	muted(target) {
+		this.runSingleEvent(
+			[{
+				type: "text",
+				text: "Hey, " + target + "!"
+			}, {
+				type: "text",
+				text: "MUTED!"
 			}, {
 				type: "anim",
 				anim: "grin_fwd",

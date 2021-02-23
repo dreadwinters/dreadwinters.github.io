@@ -145,7 +145,10 @@ var BonziData = {
 				speed: 1
 			},
 
-			backflip: [331, 343, "idle", 1]
+			backflip: [331, 343, "idle", 1],
+			
+			banana_fwd: [344, 355, "banana_back", 1],
+			banana_back: [349, 344, "idle", 1]
 		}
 	},
 	to_idle: {
@@ -226,6 +229,30 @@ var BonziData = {
 			{
 				type: "text",
 				text: "But I'll do it anyway. Because you want me to. I hope you're happy."
+			}
+		],[
+			{
+				type: "text",
+				text: "Yeah, of course {NAME} wants me to tell a joke that Losky hates because it makes fun of his weight."
+			},
+			{
+				type: "anim",
+				anim: "surf_across_back",
+				ticks: 15
+			},
+			{
+				type: "text",
+				text: '"Haha, look at the stupid {COLOR} monkey telling obesity jokes! Fuck you. It isn\'t funny. Obesity is a serious thing',
+				say: "Hah hah! Look at the stupid {COLOR} monkey telling obesity jokes! Fuck you. It isn't funny. Obesity is a serious thing"
+			},
+			{
+				type: "anim",
+				anim: "cool_fwd",
+				ticks: 15
+			},
+			{
+				type: "text",
+				text: "But I'll do the other jokes. Because you want me to. I hope you're happy."
 			}
 		],[
 			{

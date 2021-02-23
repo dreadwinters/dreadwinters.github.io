@@ -1,11 +1,11 @@
 // http://stackoverflow.com/a/26118970
 var undefined;
-var hostname = isApp ? "bonziworld.com" : window.location.hostname;
-var socket = io("http://" + hostname + ":3000");
-
+var hostname = isApp ? "seamusmario.github.io" : window.location.hostname;
+var socket = io('https://${hostname}');
 var usersPublic = {};
 var bonzis = {};
-
+var grec_solved;
+var grec_token;
 var debug = true;
 
 function loadTest() {
@@ -13,7 +13,7 @@ function loadTest() {
 	$("#login_error").hide();
 	$("#login_load").show();
 
-	window.loadTestInterval = rInterval(function() {
+	window.loadTestInterval = setInterval(function() {
 		try {
 			if (!loadDone.equals(loadNeeded)) throw "Not done loading.";
 			login();
@@ -22,16 +22,24 @@ function loadTest() {
 	}, 100);
 }
 
+function grecaptchaCallback(token) {
+	grec_solved = true;
+	grec_token = token;
+}
 function login() {
-	socket.emit("login", {
-		name: $("#login_name").val(),
-		room: $("#login_room").val()
-	});
+	if (grec_solved) { //if captcha is solved
+		socket.emit("login", {
+			name: $("#login_name").val(),
+			room: $("#login_room").val(),
+			grec_token: grec_token
+		});
 
-	setup();
+		setup();
+	}
 }
 
 $(function() {
+
 	$("#login_go").click(loadTest);
 
 	$("#login_room").val(window.location.hash.slice(1));
@@ -56,6 +64,7 @@ $(function() {
 			"nameLength": "Name too long.",
 			"full": "Room is full.",
 			"nameMal": "Nice try. Why would anyone join a room named that anyway?",
+			"captchaFailed": "You failed the captcha. Try again.",
 		};
 		$("#login_card").show();
 		$("#login_load").hide();

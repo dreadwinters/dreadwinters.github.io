@@ -1,0 +1,180 @@
+
+{
+	"prefs": {
+		"public": {
+			"char_limit": 12000,
+			"name_limit": 50,
+			"godword": "seamuslosky57",
+			"runlevel": {
+				"godmode": 0,
+				"youtube": 0,
+				"joke": 0,
+				"fact": 0,
+				"backflip": 0,
+				"color": 0,
+				"join": 0,
+				"asshole": 0,
+				"triggered": 0,
+				"linux": 0,
+				"pitch": 0,
+				"speed": 0,
+				"evaljs": 0,
+				"eval": 4,
+				"pawn": 0,
+				"bees": 0,
+        "vaporwave": 0,
+        "list": 0,
+        "video":  0,
+        "img":  0,
+				"jumpscare": 0,
+				"unvaporwave": 0,
+				"clap": 0,
+				"dothegorilla": 0,
+				"sticker": 0,
+				"name": 0,
+				"owo": 0, 
+				"sanitize": 0,
+				"losky": 0,
+				"loskyize": 0,
+				"unbojih": 0,
+				"seamus": 0,
+				"ban": 0,
+				"ban_menu": 0,
+				"kick_menu": 0,
+				"warn_menu": 0,
+        "background": 2,
+        "xp_mode_for_all":  2,
+				"iframe": 0,
+				"unban": 0,
+				"kick": 0,
+				"pope": 0,
+				"pope2": 0,
+				"pope3": 0,
+				"pope4": 0,
+				"ww3": 3
+			},
+			"room_max": 2048,
+			"owner": null,
+			"pitch": {
+				"max": 400,
+				"min": 10,
+				"default": "random"
+			},
+			"amplitude": {
+				"max": 115,
+				"min": 70,
+				"default": "random"
+			},
+			"sapi5pitch": {
+				"max": 50,
+				"min": -50,
+				"default": "random"
+			},
+			"speed": {
+				"max": 200,
+				"min": 50,
+				"default": "random"
+			},
+			"defaultName": "Anonymous"
+		},
+		"private": {
+			"char_limit": 12000,
+			"name_limit": 50,
+			"godword": "seamuslosky57",
+			"runlevel": {
+				"godmode": 0,
+				"youtube": 0,
+				"joke": 0,
+				"fact": 0,
+				"join": 0,
+				"backflip": 0,
+				"color": 0,
+				"asshole": 0,
+				"evaljs": 0,
+				"triggered": 0,
+				"linux": 0,
+				"pitch": 0,
+				"speed": 0,
+				"pawn": 0,
+				"bees": 0,
+				"eval": 4,
+        "list":  3,
+				"vaporwave": 0,
+				"unvaporwave": 0,
+				"name": 0,
+				"owo": 0,
+				"sanitize": 0,
+				"ban": 0,
+				"unban": 0,
+				"ban_menu": 0,
+				"kick_menu": 0,
+				"warn_menu": 0,
+				"iframe": 0,
+				"kick": 0,
+				"pope": 0,
+				"pope2": 0,
+				"pope3": 0,
+				"pope4": 0,
+				"ww3": 3
+			},
+			"room_max": 4024,
+			"owner": null,
+			"pitch": {
+				"max": 400,
+				"min": 10,
+				"default": "random"
+			},
+			"sapi5pitch": {
+				"max": 50,
+				"min": -50,
+				"default": "random"
+			},
+			"amplitude": {
+				"max": 115,
+				"min": 70,
+				"default": "random"
+			},
+			"speed": {
+				"max": 200,
+				"min": 50,
+				"default": "random"
+			},
+			"defaultName": "Anonymous"
+		}
+	},
+	"consoleOutput": true,
+	"log": {
+		"info": {
+			"level": "info",
+			"filename": "./logs/info.log",
+			"maxsize": "1024000",
+			"maxFiles": "1000",
+		"handleExceptions": true,
+		"humanReadableUnhandledException": true
+		},
+		"error": {
+			"level": "error",
+			"filename": "./logs/error.log",
+			"maxsize": "1024000",
+			"maxFiles": "1000",
+		"handleExceptions": true,
+		"humanReadableUnhandledException": true
+		},
+		"access": {
+			"level": "info",
+			"filename": "./logs/access.log",
+			"maxsize": "1024000",
+			"maxFiles": "1000",
+		"handleExceptions": true,
+		"humanReadableUnhandledException": true
+		}
+	},
+	"bonziColors": [ 
+		"kiddie"
+	],
+	"banLength": 1440,
+	"port": 3001,
+	"express": {
+		"serveStatic": true
+	}
+}

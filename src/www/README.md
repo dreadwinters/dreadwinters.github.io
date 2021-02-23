@@ -38,7 +38,13 @@ If you see any brackets, they indicate a placeholder. Don't type them in.
 	* purple
 	* black
 	* pink
+	* yellow
+	* orange
+	* white
+	* dark_purple
 	* If you don't type a color, you will be given one at random.
+### Limited time only! /loskyize, /unbojih
+	* Stays until end of october 2019
 * `/joke` - Tell a horribly written joke.
 * `/fact` - Tell a horribly written "fact".
 * `/backflip` - Do a backflip.

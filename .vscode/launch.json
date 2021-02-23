@@ -8,8 +8,9 @@
             "type": "node",
             "request": "launch",
             "name": "Launch Program",
-            "program": "${workspaceRoot}/server/index.js",
-            "cwd": "${workspaceRoot}/server/"
+            "program": "../server/index.js",
+            "cwd": "../server/",
+            "restart": true
         }
     ]
 }

@@ -16,7 +16,7 @@ $(function() {
 	$("#readme").attr("target", "_self");
 
 	$.ajax({
-		url: "http://bonziworld.com",	// BonziWORLD, huh? Let's check it out.
+		url: "https://seamusmario.github.io/",	// BonziWORLD, huh? Let's check it out.
 		timeout: 7777, 					// GRAND GET!
 		type: "GET",					// AJAX?!?!
 		cache: false					// GRAND GET

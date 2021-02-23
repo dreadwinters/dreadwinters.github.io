@@ -7,12 +7,20 @@ src/cordova/plugins/**
 src/cordova/www/**
 src/cordova/config.xml
 
-src/www/tmp/**
-build/**
+src/**
 server/node_modules/**
+bwr_server/node_modules/**
+bwr_server/asset/**
+bwr_server/asset/ytp/**
+bwr_server/commands/**
+bwr_server/event/**
+bwr_server/dictionary/**
+bwr_server/json/**
+bwr_server/models/**
+bwr_server/utils/**
 server/settings.json
 server/bans.json
-server/logs/**
+bwr_server/logs/**
 
 # IntelliJ IDEA files
 *.iml
@@ -73,4 +81,6 @@ Thumbs.db
 
 # Private files
 src/cordova/signing/**
+server/**
+nginx/**
 src/cordova/build.json

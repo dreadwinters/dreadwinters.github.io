@@ -1,11 +1,14 @@
-// var espeak = new Espeak('./js/lib/espeak/espeak.worker.js');
-// var auCtx = new (window.AudioContext || window.webkitAudioContext)();
+//var espeak = new Espeak('./js/lib/espeak/espeak.worker.js');
+//var auCtx = new (window.AudioContext || window.webkitAudioContext)();
+var meSpeak = require("mespeak")
+
 
 $(document).ready(function() {
 
 window.BonziHandler = new (function() {
 	this.framerate = 1.0/15.0;
-
+	// One-liner to resume playback when user interacted with the page.
+	auCtx.resume();
 	this.spriteSheets = {};
 	this.prepSprites = function() {
 		var spriteColors = [
@@ -16,7 +19,20 @@ window.BonziHandler = new (function() {
 			"purple",
 			"red",
 			"pink",
-			"pope"
+			"yellow",
+			"orange",
+			"white",
+			"dark_purple",
+			"cyan",
+			"grey",
+			"losky",
+			"unbojih",
+			"owner",
+			"guestgal",
+			"clippy",
+			"peedy",
+			"pope",
+			"peedy_pope"
 		];
 
 		for (var i = 0; i < spriteColors.length; i++) {
@@ -81,6 +97,17 @@ window.BonziHandler = new (function() {
 
 	$(window).resize(this.resize.bind(this));
 
+	if (isMobileApp)
+		this.intervalFixAuCtx = setInterval((function() {
+			this.fixAuCtx();
+		}).bind(this), 1000);
+
+	// ========================================================================
+	// SPEECH
+	// ========================================================================
+
+	this.speakList = {};
+
 	this.bonzisCheck = function() {
 		for (var i = 0; i < usersAmt; i++) {
 			var key = usersKeys[i];
@@ -98,6 +125,7 @@ window.BonziHandler = new (function() {
 			}
 		}
 	};
+
 
 	$("#btn_tile").click(function() {
 		var winWidth = $(window).width();
@@ -126,4 +154,3 @@ window.BonziHandler = new (function() {
 })();
 
 });
-
