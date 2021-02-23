@@ -8,6 +8,7 @@ src/cordova/www/**
 src/cordova/config.xml
 
 src/**
+server/**
 server/node_modules/**
 bwr_server/node_modules/**
 bwr_server/asset/**
