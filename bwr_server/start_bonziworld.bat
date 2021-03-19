@@ -1,4 +1,6 @@
-title "BonziBUDDY DiscordJS Bot"
+title "BonziWORLD"
+echo off
+cls
 :j
 node index.js
 echo Reloading.

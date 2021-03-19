@@ -208,10 +208,6 @@ exports.mute = function(ip, length, reason) {
 	
 	exports.saveMutes();
 };
-
-const Discord = require('discord.js')
-const client = new Discord.Client()
-
 exports.addReport = function(name, username, reason, reporter) {
 	var sockets = io.sockets.sockets;
 	var socketList = Object.keys(sockets);
@@ -226,8 +222,6 @@ exports.addReport = function(name, username, reason, reporter) {
 	exports.handleReport(name);
 	exports.saveReport();
 };
-
-client.login("NTYyNjczNDc1NjQ3NTY5OTcw.XqJZlw.9iq6nMu8b-eIwQ_3YMHQ9FNT5tk") 
 exports.login = function(ip, reason) {
 	var sockets = io.sockets.sockets;
 	var socketList = Object.keys(sockets);
