@@ -2,6 +2,8 @@
 
 This project was discontinued in October 2020, it's 1st anniversary of being a server. The source code is available here.
 
+If you are a member on The Microsoft Agent Frontier Empire then you most likely would recognize this.
+
 All the source code for the server and client is publically available here. If you want to run your own BonziWORLD, by all means go ahead. Do whatever you'd like with this code. Just try to put me somewhere in the credits.
 
 ## Dependencies
