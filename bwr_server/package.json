@@ -10,8 +10,6 @@
     "start": "node index.js"
   },
   "dependencies": {
-    "@google-cloud/text-to-speech": "^3.0.1",
-    "acorn": ">=5.7.4",
     "axios": "^0.19.2",
     "braces": ">=2.3.1",
     "cheerio": "^1.0.0-rc.3",
@@ -30,12 +28,10 @@
     "md5-file": "^5.0.0",
     "merge": "^1.2.1",
     "minimist": ">=1.2.2",
-    "node-opus": "^0.3.3",
     "request": "^2.88.2",
     "sanitize-html": "^1.20.0",
     "socket.io": "^2.2.0",
     "telnet-client": "^1.4.4",
-    "this_vid2": "git+https://git@github.com/TheEssem/this_vid2.git",
     "tunnel-agent": ">=0.6.0",
     "underscore.string": ">=3.3.5",
     "winston": "^3.1.0"
