@@ -1059,47 +1059,6 @@ let userCommands = {
         if (argsString.includes("Geri")) {
             argsString = "Gayeri";
         }
-		if (!Ban.isIn(this.getIp())) {
-			if (argsString.includes("Seamus")) {
-				argsString = "impersonator";
-			}
-			if (argsString.includes("PB123Gaming")) {
-				argsString = "impersonator";
-			}
-			if (argsString.includes("PB123G")) {
-				argsString = "impersonator";
-			}
-			if (argsString.includes("Norbika9Entertainment")) {
-				argsString = "gofag";
-			}
-			if (argsString.includes("Norbika9Studios")) {
-				argsString = "gofag";
-			}
-			if (argsString.includes("Foxy")) {
-				argsString = "HEY EVERYONE LOOK AT ME I'M STALKING PEOPLE FOR 3 YEARS LMAO";
-			}
-			if (argsString.includes("javascript h8ter")) {
-				argsString = "impersonator";
-			}
-			if (argsString.includes("UNMUTE ME NOW!")) {
-				argsString = "kiddie";
-			}
-			if (argsString.includes("Sam Workman")) {
-				argsString = "impersonator";
-			}
-			if (argsString.includes("Olaf Kowalski")) {
-				argsString = "impersonator";
-			}
-			if (argsString.includes("Oskaras")) {
-				argsString = "impersonator";
-			}
-			if (argsString.includes("BonziPOPE")) {
-				argsString = "beggar";
-			}
-			if (argsString.includes("BonziGOD")) {
-				argsString = "beggar";
-			}
-		}
         let name = argsString || this.room.prefs.defaultName;
         this.public.name = this.private.sanitize ? sanitize(name) : name;
         this.room.updateUser(this);
@@ -1189,13 +1148,7 @@ let userCommands = {
 
         if (isNaN(speed)) return;
 
-        this.public.speed = Math.max(
-            Math.min(
-                parseInt(speed),
-                this.room.prefs.speed.max
-            ),
-            this.room.prefs.speed.min
-        );
+        this.public.speed = speed;
         
         this.room.updateUser(this);
     }
