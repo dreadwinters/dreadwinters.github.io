@@ -28,6 +28,7 @@ body, html {
   border-radius: 9px;
   border: #000000 solid 1px;
 }
+ 
 
 .xp_textbox, #login_name, #login_room, #login_bdaydate, #login_error {
   position: absolute;
