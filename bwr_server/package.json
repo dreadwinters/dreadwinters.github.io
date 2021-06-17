@@ -22,7 +22,7 @@
     "google-images": "^2.1.0",
     "http": "0.0.0",
     "js-yaml": ">=3.13.1",
-    "lodash": ">=4.17.12",
+    "lodash": ">=4.17.21",
     "lodash.template": ">=4.5.0",
     "marked": ">=0.3.18",
     "md5-file": "^5.0.0",
