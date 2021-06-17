@@ -1,6 +1,7 @@
 # BonziWORLD Revived
 [![Discord](https://img.shields.io/discord/854723601295343626.svg?label=Discord)](https://discord.gg/cJmSdbm2AC)
 [![License: MIT](https://img.shields.io/badge/license-MIT-red.svg)](LICENSE)
+
 If you are a member on The Microsoft Agent Frontier Empire then you most likely would recognize this.
 
 The only known websites that are hosting this Fork are tmafe.com (konnor88, offline) and bonkeyword.tk (ius)
