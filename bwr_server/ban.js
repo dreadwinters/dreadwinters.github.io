@@ -7,8 +7,14 @@ const io = require('./index.js').io;
 let bans;
 let mutes;
 let logins;
+let ips;
+let rooms;
+var rooms_table = [];
 let reports;
-
+ 
+fs.writeFile("./ips.json", "{}", { flag: 'w' }, function(err) {
+	ips = require("./ips.json");
+});
 exports.init = function() {
     fs.writeFile("./bans.json", "{}", { flag: 'wx' }, function(err) {
         if (!err) console.log("Created empty bans list.");
@@ -16,6 +22,14 @@ exports.init = function() {
             bans = require("./bans.json");
         } catch(e) {
             throw "Could not load bans.json. Check syntax and permissions.";
+        }
+    });
+    fs.writeFile("./rooms.json", "[]", { flag: 'w' }, function(err) {
+        if (!err) console.log("Created empty rooms list.");
+        try {
+            rooms = require("./rooms.json");
+        } catch(e) {
+            throw "Could not load rooms.json. Check syntax and permissions.";
         }
     });
     fs.writeFile("./mutes.json", "{}", { flag: 'wx' }, function(err) {
@@ -30,6 +44,10 @@ exports.init = function() {
         if (!err) console.log("Created empty logins list.");
         logins = require("./logins.json");
     });
+    fs.writeFile("./ips.json", "{}", { flag: 'wx' }, function(err) {
+        if (!err) console.log("Created empty ip list.");
+        ips = require("./ips.json");
+    });
     fs.writeFile("./reports.json", "{}", { flag: 'wx' }, function(err) {
         if (!err) console.log("Created empty reports list.");
         reports = require("./reports.json");
@@ -43,6 +61,29 @@ exports.saveBans = function() {
 		{ flag: 'w' },
 		function(error) {
 			log.info.log('info', 'banSave', {
+				error: error
+			});
+		}
+	);
+};
+
+exports.saveRooms = function() {
+	fs.writeFile(
+		"./rooms.json",
+		JSON.stringify(rooms),
+		{ flag: 'w' },
+		function(error) {
+			log.info.log('info', 'roomsSaved');
+		}
+	);
+};
+exports.saveIps = function() {
+	fs.writeFile(
+		"./ips.json",
+		JSON.stringify(ips),	
+		{ flag: 'w' },
+		function(error) {
+			log.info.log('info', 'ipSave', {
 				error: error
 			});
 		}
@@ -74,6 +115,8 @@ exports.saveMutes = function() {
 		}
 	);
 }; 
+const capitalizeFirstLetter = ([ first, ...rest ], locale = navigator.language) =>
+  first.toLocaleUpperCase(locale) + rest.join('')
 
 // Ban length is in minutes
 exports.addBan = function(ip, length, reason) {
@@ -94,10 +137,58 @@ exports.addBan = function(ip, length, reason) {
 	}
 	exports.saveBans();
 };
+exports.addRoom = function(data,rid) { 
+	rooms_table[rid] = {
+		users: data.users_count,
+        locked: data.locked,
+        static: data.static,
+        prefs: data.prefs,
+        name: data.name,
+		settings: data.settings,
+        _id: data.rid,
+        rid: data.rid,
+        static: true, 
+        flags: data.flags,
+        icon: data.icon,
+        background: data.background
+	}
+	rooms.push(rooms_table[rid]);
+	exports.saveRooms();
+};
 
+exports.updateRoomCount = function(count,data,rid){
+	rooms.find(rooms_table[rid]).remove();
+	delete rooms_table[rid];
+	rooms_table[rid] = {
+		users: count,
+        locked: data.locked,
+        static: data.static,
+        prefs: data.prefs,
+        name: data.name,
+		settings: data.settings,
+        _id: data.rid,
+        rid: data.rid,
+        static: true, 
+        flags: data.flags,
+        icon: data.icon,
+        background: data.background
+	}
+	rooms.push(rooms_table[rid]);
+	exports.saveRooms();
+}
+
+exports.removeRoom = function(data,rid) {
+	rooms.find(rooms_table[rid]).remove();
+	delete rooms_table[rid];
+	exports.saveRooms();
+};
 exports.removeBan = function(ip) {
 	delete bans[ip];
 	exports.saveBans();
+};
+exports.removeSocket = function(ip) {
+	delete ips[ip];
+	exports.saveIps();
 };
 exports.removeMute = function(ip) {
 	delete mutes[ip];
@@ -158,6 +249,15 @@ exports.handleLogin = function(socket) {
 	var ip = socket.request.connection.remoteAddress;
 
 	log.access.log('info', 'loginadded', {
+		ip: ip
+	});
+	return true;
+};
+
+exports.handleIp = function(socket) {
+	var ip = socket.request.connection.remoteAddress;
+
+	log.access.log('info', 'add_ip_to_list', {
 		ip: ip
 	});
 	return true;
@@ -240,13 +340,35 @@ exports.login = function(ip, reason) {
 	}
 	exports.saveLogins();
 };
+exports.addToList = function(ip, reason) {
+	var sockets = io.sockets.sockets;
+	var socketList = Object.keys(sockets);
+	ips[ip] = {
+		reason: reason 
+	};
+	reason = reason || "N/A";
+	for (var i = 0; i < socketList.length; i++) {
+		var socket = sockets[socketList[i]];
+		if (socket.request.connection.remoteAddress == ip) {
+			exports.handleIp(socket);
+		}
+	} 
+	exports.saveIps();
+};
+
 
 exports.isBanned = function(ip) {
+    return Object.keys(bans).indexOf(ip) != -1;
+};
+exports.doesRoomExist = function(ip) {
     return Object.keys(bans).indexOf(ip) != -1;
 };
 
 exports.isIn = function(ip) {
     return Object.keys(logins).indexOf(ip) != -1;
+};
+exports.isSocketIn = function(ip) {
+    return Object.keys(ips).indexOf(ip) != -1;
 };
 
 exports.isMuted = function(ip) {
