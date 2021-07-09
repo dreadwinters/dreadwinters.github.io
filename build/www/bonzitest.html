@@ -166,6 +166,8 @@ if (ToolBar_Supported != null && ToolBar_Supported == true)
 <p>Or click one of these other buttons:</p>
 <p><strong></strong><input id="button7" name="button7" style="HEIGHT: 24px; WIDTH: 117px" type="button" value="Tell a Joke" onclick="JokeButton()">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
+<p><strong></strong><input id="button7" name="button7" style="HEIGHT: 24px; WIDTH: 117px" type="button" value="Tell a Joke to Peedy" onclick="JokeButtonPeedy()">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
 <strong></strong><input id="button7" name="button7" style="HEIGHT: 24px; WIDTH: 117px" type="button" value="Annoy Peedy" onclick="MakePeedyMad()">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
 <strong></strong><input id="button7" name="button7" style="HEIGHT: 24px; WIDTH: 117px" type="button" value="Show Peedy" onclick="ShowPeedy()">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -539,8 +541,8 @@ Sub MakePeedyMad()
 	Bonzi.Speak "Hey, Peedy!"
 	Bonzi.Speak "Hey, Peedy!"
 	Bonzi.Speak "Hey, Peedy!"
-	Bonzi.Speak "Hey, Peedy!"
-	WScript.Sleep(3000)
+	Set Req = Bonzi.Speak "Hey, Peedy!"
+	WaitFor Req
 	Peedy.Speak "\pit=400\Bonzi, stop right freaking now!"
 
 	Bonzi.Play "Giggle"
@@ -602,7 +604,7 @@ Case 1
      Bonzi.Play "Explain"
      Bonzi.Speak "If debugging is the process of removing bugs..."
      Bonzi.Play "Confused"
-     Bonzi.Speak "Is \emp\programming \emp\the \emp\process \emp\of \emp\putting \emp\in bugs?"
+     Bonzi.Speak "Is programming the process of putting in bugs?"
 	 
   Case 6
      Bonzi.Play "Explain"
@@ -624,7 +626,8 @@ Sub JokeButtonPeedy()
 
   'choose a random response
   randomreply = Int((6 - 1 + 1) * Rnd + 1)
-  Bonzi.Speak("Hey, Peedy!")
+  Set Req = Bonzi.Speak("Hey, Peedy!")
+  WaitFor Req
   ' Set the character's language ID
   Peedy.LanguageID = &H0409
   Peedy.Speak "What is it, Bonzi?|What do you want now?|Please stop telling me jokes, or i will beg for pope!"
@@ -681,6 +684,7 @@ Case 1
     
   Set Req = Bonzi.Play("Giggle")
   WaitFor Req
+  Peedy.Stop
   Peedy.Speak "That's not funny, you idiot!|Very funny! Ha ha ha!|I love that one!|I hate beavers."
   Bonzi.Play "Blink"
 
