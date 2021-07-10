@@ -14,6 +14,8 @@ All the source code for the server and client is publically available here. If y
 - Sass
 - Git
 - Cordova (Optional)
+- [Microsoft Speech SDK 4.0](https://github.com/TETYYS/SAPI4/blob/master/spchapi.exe?raw=true)
+- [Lernout & Hauspie TruVoice American English voices](https://github.com/TETYYS/SAPI4/raw/master/tv_enua.exe?raw=true)
 
 ## Setup
 In a terminal/command prompt, navigate to where you'd like BonziWORLD to be placed and run the following:
